@@ -59,7 +59,7 @@ const loginUser = asyncHandler(async (req, res) => {
         },
       },
       "gaurav@123",
-      { expiresIn: "15m" }
+      { expiresIn: "12m" }
     );
     res.status(200).json({ accessToken });
   } else {

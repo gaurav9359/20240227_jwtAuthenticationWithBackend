@@ -3,9 +3,13 @@ const jwt = require("jsonwebtoken");
 
 const validateToken = asyncHandler(async (req, res, next) => {
   let token;
+
+ 
   let authHeader = req.headers.Authorization || req.headers.authorization;
   if (authHeader && authHeader.startsWith("Bearer")) {
-    token = authHeader.split(" ")[1];
+    token = authHeader.split(" ")[1]
+    
+    //check the token
     jwt.verify(token, "gaurav@123", (err, decoded) => {
       if (err) {
         res.status(401);
@@ -15,6 +19,7 @@ const validateToken = asyncHandler(async (req, res, next) => {
       next();
     });
 
+    //if token is not valid
     if (!token) {
       res.status(401);
       throw new Error("User is not authorized or token is missing");
